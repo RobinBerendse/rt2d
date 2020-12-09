@@ -42,7 +42,8 @@ MyScene::~MyScene()
 	delete myentity;
 }
 int MyScene::Angle(Point2 P1, Point2 P2) {
-	return atan2(P1.y - P2.y, P1.x - P2.x) * 180 / 3.141;
+	double x = atan2(P1.y - P2.y, P1.x - P2.x);
+	return x * 180 / 3.141;
 }
 int MyScene::Distance(Point2 P1, Point2 P2) {
 	return sqrt(pow(P2.x - P1.x, 2) +pow(P2.y - P1.y, 2) * 1.0);
