@@ -35,7 +35,8 @@ private:
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;
 
-	int distance(Point2, Point2);
+	int Distance(Point2, Point2);
+	int Angle(Point2, Point2);
 };
 
 #endif /* SCENE00_H */

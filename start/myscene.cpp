@@ -41,7 +41,10 @@ MyScene::~MyScene()
 	// delete myentity from the heap (there was a 'new' in the constructor)
 	delete myentity;
 }
-int MyScene::distance(Point2 P1, Point2 P2) {
+int MyScene::Angle(Point2 P1, Point2 P2) {
+	return atan2(P1.y - P2.y, P1.x - P2.x) * 180 / 3.141;
+}
+int MyScene::Distance(Point2 P1, Point2 P2) {
 	return sqrt(pow(P2.x - P1.x, 2) +pow(P2.y - P1.y, 2) * 1.0);
 }
 
@@ -55,7 +58,8 @@ void MyScene::update(float deltaTime)
 
 	myentity->position = Point2(mouse);
 
-	std::cout << distance(mouse, mypuck->position) << std::endl;
+	//std::cout << Distance(mouse, mypuck->position) << std::endl;
+	std::cout << Angle(mouse, mypuck->position) << std::endl;
 
 	// ###############################################################
 	// Escape key stops the Scene
