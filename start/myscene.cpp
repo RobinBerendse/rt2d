@@ -3,11 +3,14 @@
  *
  * Copyright 2015 Your Name <you@yourhost.com>
  */
+using namespace std;
+
 
 #include <fstream>
 #include <sstream>
-
 #include "myscene.h"
+
+
 
 MyScene::MyScene() : Scene()
 {
@@ -18,10 +21,15 @@ MyScene::MyScene() : Scene()
 	// the Sprite is added in Constructor of MyEntity.
 	myentity = new MyEntity();
 	myentity->position = Point2(SWIDTH/2, SHEIGHT/2);
-
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
 	this->addChild(myentity);
+
+
+
+	mypuck = new MyPuck();
+	mypuck->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+	this->addChild(mypuck);
 }
 
 
@@ -33,9 +41,22 @@ MyScene::~MyScene()
 	// delete myentity from the heap (there was a 'new' in the constructor)
 	delete myentity;
 }
+int MyScene::distance(Point2 P1, Point2 P2) {
+	return sqrt(pow(P2.x - P1.x, 2) +pow(P2.y - P1.y, 2) * 1.0);
+}
 
 void MyScene::update(float deltaTime)
 {
+	//FOLLOW MOUSE
+	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;
+	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;
+	Point2 mouse = Point2(mousex, mousey);
+
+
+	myentity->position = Point2(mouse);
+
+	std::cout << distance(mouse, mypuck->position) << std::endl;
+
 	// ###############################################################
 	// Escape key stops the Scene
 	// ###############################################################
