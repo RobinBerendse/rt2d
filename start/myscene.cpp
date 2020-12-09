@@ -60,7 +60,11 @@ void MyScene::update(float deltaTime)
 	myentity->position = Point2(mouse);
 
 	//std::cout << Distance(mouse, mypuck->position) << std::endl;
-	std::cout << Angle(mouse, mypuck->position) << std::endl;
+	//std::cout << Angle(mouse, mypuck->position) << std::endl;
+
+	if (Distance(mouse, mypuck->position) < 63) {
+		std::cout << "hit" << std::endl;
+	}
 
 	// ###############################################################
 	// Escape key stops the Scene
