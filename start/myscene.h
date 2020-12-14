@@ -37,6 +37,7 @@ private:
 
 	int Distance(Point2, Point2);
 	int Angle(Point2, Point2);
+	Point2 RotateRadians(Point2, int);
 };
 
 #endif /* SCENE00_H */

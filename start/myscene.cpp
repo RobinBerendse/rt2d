@@ -45,6 +45,12 @@ int MyScene::Angle(Point2 P1, Point2 P2) {
 	double x = atan2(P1.y - P2.y, P1.x - P2.x);
 	return x * 180 / 3.141;
 }
+Point2 MyScene::RotateRadians(Point2 P1, int rot) {
+	double ca = cos(rot);
+	double sa = sin(rot);
+	Point2 result = Point2(ca * P1.x - sa * P1.y, sa * P1.x + ca * P1.y);
+	return result;
+}
 int MyScene::Distance(Point2 P1, Point2 P2) {
 	return sqrt(pow(P2.x - P1.x, 2) +pow(P2.y - P1.y, 2) * 1.0);
 }
@@ -61,10 +67,16 @@ void MyScene::update(float deltaTime)
 
 	//std::cout << Distance(mouse, mypuck->position) << std::endl;
 	//std::cout << Angle(mouse, mypuck->position) << std::endl;
+	
+	Point2 velocity;
 
 	if (Distance(mouse, mypuck->position) < 63) {
 		std::cout << "hit" << std::endl;
+		//velocity = RotateRadians(mypuck->position, Angle(mouse, mypuck->position));
+		velocity = mypuck->position - mouse;
 	}
+	
+	mypuck->position += velocity * deltaTime * 100;
 
 	// ###############################################################
 	// Escape key stops the Scene
