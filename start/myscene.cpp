@@ -63,6 +63,7 @@ Point2 MyScene::Speed(Point2 P1, int speed) {
 }
 void MyScene::update(float deltaTime)
 {
+
 	//FOLLOW MOUSE
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;
 	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;

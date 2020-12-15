@@ -3,7 +3,7 @@
 MySquare::MySquare() : Entity()
 {
 	this->addSprite("assets/square.tga");
-	this->sprite()->color = RED;
+	this->sprite()->color = BLUE;
 }
 
 MySquare::~MySquare()
