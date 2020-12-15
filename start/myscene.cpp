@@ -68,7 +68,6 @@ void MyScene::update(float deltaTime)
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;
 	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;
 	Point2 mouse = Point2(mousex, mousey);
-
 	myentity->position = Point2(mouse);
 
 	//std::cout << Distance(mouse, mypuck->position) << std::endl;
@@ -76,9 +75,8 @@ void MyScene::update(float deltaTime)
 	//velocity = RotateRadians(mypuck->position, Angle(mouse, mypuck->position));
 	Point2 velocity;
 
-	if (Distance(mouse, mypuck->position) < 63) {
-		std::cout << "hit" << std::endl;
-		velocity = mypuck->position - mouse;
+	if (Distance(myentity->position, mypuck->position) < 63) {
+		velocity = mypuck->position - myentity->position;
 	}
 	mypuck->position += Speed(velocity, 1) * deltaTime * 50;
 	

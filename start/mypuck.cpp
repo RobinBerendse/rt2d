@@ -14,6 +14,19 @@ MyPuck::~MyPuck()
 void MyPuck::update(float deltaTime)
 {
 	// ###############################################################
-	// Rotate
+	// Hit detection rand
 	// ###############################################################
+	int value = 35;
+	if (this->position.x < value) {
+		this->position.x = value;
+	}
+	if (this->position.x > SWIDTH - value) {
+		this->position.x = SWIDTH - value;
+	}
+	if (this->position.y < value) {
+		this->position.y = value;
+	}
+	if (this->position.y > SHEIGHT - value) {
+		this->position.y = SHEIGHT - value;
+	}
 }
