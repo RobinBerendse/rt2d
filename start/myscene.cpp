@@ -17,28 +17,31 @@ MyScene::MyScene() : Scene()
 	// start the timer.
 	t.start();
 
-	// create a single instance of MyEntity in the middle of the screen.
-	// the Sprite is added in Constructor of MyEntity.
 	myentity = new MyEntity();
 	myentity->position = Point2(SWIDTH/2, SHEIGHT/2);
-	// create the scene 'tree'
-	// add myentity to this Scene as a child.
 	this->addChild(myentity);
-
 
 
 	mypuck = new MyPuck();
 	mypuck->position = Point2(SWIDTH / 2, SHEIGHT / 2);
 	this->addChild(mypuck);
+
+
+	mysquare = new MySquare();
+	mysquare->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+	mysquare->scale = Point2(10.8, 6);
+	this->addChild(mysquare);
 }
 
 
 MyScene::~MyScene()
 {
 	// deconstruct and delete the Tree
+	this->removeChild(mypuck);
 	this->removeChild(myentity);
 
 	// delete myentity from the heap (there was a 'new' in the constructor)
+	delete mypuck;
 	delete myentity;
 }
 int MyScene::Angle(Point2 P1, Point2 P2) {
@@ -54,7 +57,10 @@ Point2 MyScene::RotateRadians(Point2 P1, int rot) {
 int MyScene::Distance(Point2 P1, Point2 P2) {
 	return sqrt(pow(P2.x - P1.x, 2) +pow(P2.y - P1.y, 2) * 1.0);
 }
-
+Point2 MyScene::Speed(Point2 P1, int speed) {
+	Point2 result = Point2(P1.x * speed, P1.y * speed);
+	return result;
+}
 void MyScene::update(float deltaTime)
 {
 	//FOLLOW MOUSE
@@ -62,22 +68,19 @@ void MyScene::update(float deltaTime)
 	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;
 	Point2 mouse = Point2(mousex, mousey);
 
-
 	myentity->position = Point2(mouse);
 
 	//std::cout << Distance(mouse, mypuck->position) << std::endl;
 	//std::cout << Angle(mouse, mypuck->position) << std::endl;
-	
+	//velocity = RotateRadians(mypuck->position, Angle(mouse, mypuck->position));
 	Point2 velocity;
 
 	if (Distance(mouse, mypuck->position) < 63) {
 		std::cout << "hit" << std::endl;
-		//velocity = RotateRadians(mypuck->position, Angle(mouse, mypuck->position));
 		velocity = mypuck->position - mouse;
 	}
+	mypuck->position += Speed(velocity, 1) * deltaTime * 50;
 	
-	mypuck->position += velocity * deltaTime * 100;
-
 	// ###############################################################
 	// Escape key stops the Scene
 	// ###############################################################

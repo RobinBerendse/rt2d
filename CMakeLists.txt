@@ -160,6 +160,8 @@ IF(MAKE_START)
 		start/myscene.h
 		start/mypuck.cpp
 		start/mypuck.h
+		start/mysquare.cpp
+		start/mysquare.h
 	)
 	target_link_libraries(start
 		${ALL_GRAPHICS_LIBS}
