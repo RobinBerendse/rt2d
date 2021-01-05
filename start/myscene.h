@@ -41,7 +41,11 @@ private:
 	int Distance(Point2, Point2);
 	int Angle(Point2, Point2);
 	Point2 RotateRadians(Point2, int);
+	Point2 Normalize(Point2);
+	float Magnitude(Point2);
+	Point2 Rotate(Point2, float);
 	Point2 Speed(Point2, int);
+	double deg2rad(double);
 };
 
 #endif /* SCENE00_H */

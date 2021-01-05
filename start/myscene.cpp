@@ -9,7 +9,7 @@ using namespace std;
 #include <fstream>
 #include <sstream>
 #include "myscene.h"
-
+#include <cmath>
 
 
 MyScene::MyScene() : Scene()
@@ -44,6 +44,28 @@ MyScene::~MyScene()
 	delete mypuck;
 	delete myentity;
 }
+float MyScene::Magnitude(Point2 P1) {
+	return sqrt((P1.x * P1.x) + (P1.y * P1.y));
+}
+Point2 MyScene::Normalize(Point2 P1) {
+	float length = Magnitude(P1);
+	P1.x / length;
+	P1.y / length;
+	return P1;
+}
+Point2 MyScene::Rotate(Point2 v, float degrees) {
+	float xsin = sin(deg2rad(degrees));
+	float xcos = cos(deg2rad(degrees));
+
+	float tx = v.x;
+	float ty = v.y;
+	v.x = (xcos * tx) - (xsin * ty);
+	v.y = (xsin * tx) + (xcos * ty);
+	return v;
+}
+double MyScene::deg2rad(double degrees) {
+	return degrees * 4.0 * atan(1.0) / 180.0;
+}
 int MyScene::Angle(Point2 P1, Point2 P2) {
 	double x = atan2(P1.y - P2.y, P1.x - P2.x);
 	return x * 180 / 3.141;
@@ -63,7 +85,6 @@ Point2 MyScene::Speed(Point2 P1, int speed) {
 }
 void MyScene::update(float deltaTime)
 {
-
 	//FOLLOW MOUSE
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;
 	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT / 2;
@@ -79,6 +100,7 @@ void MyScene::update(float deltaTime)
 		velocity = mypuck->position - myentity->position;
 	}
 	mypuck->position += Speed(velocity, 1) * deltaTime * 50;
+	mypuck->position += Normalize(Rotate(mypuck->position, Angle(mypuck->position, myentity->position))) * deltaTime;
 	
 	// ###############################################################
 	// Escape key stops the Scene
