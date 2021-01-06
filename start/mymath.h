@@ -1,29 +1,32 @@
-#ifndef MYPUCK_H
-#define MYPUCK_H
+#ifndef MYMATH_H
+#define MYMATH_H
 
 #include <rt2d/entity.h>
-#include "mymath.h"
 
 /// @brief The MyEntity class is the Entity implementation.
-class MyPuck : public Entity
+class MyMath
 {
 public:
 	/// @brief Constructor
-	MyPuck();
+	MyMath();
 	/// @brief Destructor
-	virtual ~MyPuck();
-	MyMath* math;
+	virtual ~MyMath();
+	
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
 	/// @return void
 	virtual void update(float deltaTime);
-
-	Point2 player;
-	void playerpos(Point2);
+	int Distance(Point2, Point2);
+	int Angle(Point2, Point2);
+	Point2 RotateRadians(Point2, int);
+	Point2 Normalize(Point2);
+	float Magnitude(Point2);
+	Point2 Rotate(Point2, float);
+	Point2 Speed(Point2, int);
+	double deg2rad(double);
 
 private:
 	/* add your private declarations */
 };
 
-#endif /* MYPUCK_H */
-
+#endif /* MYMATH_H */

@@ -162,6 +162,10 @@ IF(MAKE_START)
 		start/mypuck.h
 		start/mysquare.cpp
 		start/mysquare.h
+		start/myplayer.cpp
+		start/myplayer.h
+		start/mymath.cpp
+		start/mymath.h
 	)
 	target_link_libraries(start
 		${ALL_GRAPHICS_LIBS}

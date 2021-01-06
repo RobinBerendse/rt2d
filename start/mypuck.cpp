@@ -13,6 +13,14 @@ MyPuck::~MyPuck()
 
 void MyPuck::update(float deltaTime)
 {
+	Point2 velocity;
+	
+	if (math->Distance(player, this->position) < 63) {
+		velocity = this->position - player;
+	}
+	this->position += math->Speed(velocity, 1) * deltaTime * 50;
+	this->position += math->Normalize(math->Rotate(this->position, math->Angle(this->position, player))) * deltaTime;
+
 	// ###############################################################
 	// Hit detection rand
 	// ###############################################################
@@ -29,4 +37,8 @@ void MyPuck::update(float deltaTime)
 	if (this->position.y > SHEIGHT - value) {
 		this->position.y = SHEIGHT - value;
 	}
+}
+
+void MyPuck::playerpos(Point2 x) {
+	player = x;
 }

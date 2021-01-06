@@ -14,6 +14,7 @@
 #include "myentity.h"
 #include "mypuck.h"
 #include "mysquare.h"
+#include "myplayer.h"
 
 
 /// @brief The MyScene class is the Scene implementation.
@@ -34,18 +35,11 @@ private:
 	/// @brief the rotating square in the middle of the screen
 	MyEntity* myentity;
 	MyPuck* mypuck;
+	MyEntity* myEnemy;
 	MySquare* mysquare;
+	MyPlayer* myplayer;
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;
-
-	int Distance(Point2, Point2);
-	int Angle(Point2, Point2);
-	Point2 RotateRadians(Point2, int);
-	Point2 Normalize(Point2);
-	float Magnitude(Point2);
-	Point2 Rotate(Point2, float);
-	Point2 Speed(Point2, int);
-	double deg2rad(double);
 };
 
 #endif /* SCENE00_H */
