@@ -13,6 +13,7 @@ public:
 	/// @brief Destructor
 	virtual ~MyPuck();
 	MyMath* math;
+	Point2 Direction;
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
 	/// @return void
@@ -20,6 +21,7 @@ public:
 
 	Point2 player;
 	void playerpos(Point2);
+	void Collision(bool);
 
 private:
 	/* add your private declarations */

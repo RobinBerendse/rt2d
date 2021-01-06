@@ -1,15 +1,9 @@
-/**
- * This class describes MyScene behavior.
- *
- * Copyright 2015 Your Name <you@yourhost.com>
- */
 using namespace std;
 
 
 #include <fstream>
 #include <sstream>
 #include "myscene.h"
-#include <cmath>
 
 
 MyScene::MyScene() : Scene()
@@ -55,6 +49,9 @@ MyScene::~MyScene()
 
 void MyScene::update(float deltaTime)
 {
+	if (math->Distance(myplayer->position, mypuck->position) < 63) {
+		mypuck->Collision(true);
+	}
 	
 	//Make point2 from mouse pos
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH / 2;

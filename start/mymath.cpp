@@ -14,11 +14,10 @@ void MyMath::update(float deltaTime)
 {
 	
 }
-
-Point2 MyMath::RotateRadians(Point2, int)
-{
-	return Point2();
+Point2 MyMath::Subtract(Point2 P1, Point2 P2) {
+	return Point2 (P1.x - P2.x, P1.y - P2.y);
 }
+
 float MyMath::Magnitude(Point2 P1) {
 	return sqrt((P1.x * P1.x) + (P1.y * P1.y));
 }
@@ -45,13 +44,11 @@ int MyMath::Angle(Point2 P1, Point2 P2) {
 	double x = atan2(P1.y - P2.y, P1.x - P2.x);
 	return x * 180 / 3.141;
 }
-/*
 Point2 MyMath::RotateRadians(Point2 P1, int rot) {
 	double ca = cos(rot);
 	double sa = sin(rot);
 	return Point2(ca * P1.x - sa * P1.y, sa * P1.x + ca * P1.y);
 }
-*/
 int MyMath::Distance(Point2 P1, Point2 P2) {
 	return sqrt(pow(P2.x - P1.x, 2) + pow(P2.y - P1.y, 2) * 1.0);
 }

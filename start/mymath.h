@@ -24,6 +24,7 @@ public:
 	Point2 Rotate(Point2, float);
 	Point2 Speed(Point2, int);
 	double deg2rad(double);
+	Point2 Subtract(Point2, Point2);
 
 private:
 	/* add your private declarations */

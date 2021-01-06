@@ -15,6 +15,7 @@
 #include "mypuck.h"
 #include "mysquare.h"
 #include "myplayer.h"
+#include "mymath.h"
 
 
 /// @brief The MyScene class is the Scene implementation.
@@ -38,6 +39,7 @@ private:
 	MyEntity* myEnemy;
 	MySquare* mysquare;
 	MyPlayer* myplayer;
+	MyMath* math;
 	/// @brief a Timer to rotate the color every n seconds
 	Timer t;
 };
