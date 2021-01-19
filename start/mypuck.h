@@ -9,19 +9,18 @@ class MyPuck : public Entity
 {
 public:
 	/// @brief Constructor
-	MyPuck();
+	MyPuck(int);
 	/// @brief Destructor
 	virtual ~MyPuck();
 	MyMath* math;
 	Point2 Direction;
+	int speed;
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
 	/// @return void
 	virtual void update(float deltaTime);
 
-	Point2 player;
-	void playerpos(Point2);
-	void Collision(bool);
+	void Collision(Point2);
 
 private:
 	/* add your private declarations */

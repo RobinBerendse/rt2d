@@ -16,6 +16,8 @@ public:
 	/// @param deltaTime the elapsed time in seconds
 	/// @return void
 	virtual void update(float deltaTime);
+
+	int Limit(int, int);
 	int Distance(Point2, Point2);
 	int Angle(Point2, Point2);
 	Point2 RotateRadians(Point2, int);

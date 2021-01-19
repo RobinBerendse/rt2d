@@ -1,8 +1,8 @@
 #include "mypuck.h"
 
-MyPuck::MyPuck() : Entity()
+MyPuck::MyPuck(int x) : Entity()
 {
-	Direction = Point2(0, 0);
+	speed = x;
 	this->addSprite("assets/circle.tga");
 	this->sprite()->color = RED;
 }
@@ -14,10 +14,7 @@ MyPuck::~MyPuck()
 
 void MyPuck::update(float deltaTime)
 {
-	
-	this->position += Direction * 10 * deltaTime;
-	//this->position += math->Speed(velocity, 1) * deltaTime * 50;
-	//this->position += math->Normalize(math->Rotate(this->position, math->Angle(this->position, player))) * deltaTime;
+	this->position += Direction * speed * deltaTime;
 
 	// ###############################################################
 	// Hit detection rand
@@ -40,11 +37,9 @@ void MyPuck::update(float deltaTime)
 		this->position.y = SHEIGHT - value;
 	}
 }
-void MyPuck::Collision(bool x) {
-	Point2 Difference = math->Subtract(this->position, player);
+void MyPuck::Collision(Point2 object) {
+	Point2 Difference = math->Subtract(this->position, object);
 	Direction = math->Normalize(Difference);
-}
-
-void MyPuck::playerpos(Point2 x) {
-	player = x;
+	speed += 1;
+	speed = math->Limit(speed, 15);
 }

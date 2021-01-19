@@ -6,30 +6,28 @@
  * @brief description of MyEntity behavior.
  */
 
-#ifndef MYENTITY_H
-#define MYENTITY_H
+#ifndef MYPARTICLESYSTEM_H
+#define MYPARTICLESYSTEM_H
 
-#include <rt2d/entity.h>
+#include "myentity.h"
 
-/// @brief The MyEntity class is the Entity implementation.
-class MyEntity : public Entity
+ /// @brief The MyEntity class is the Entity implementation.
+class MyParticleSystem
 {
 public:
 	/// @brief Constructor
-	MyEntity();
+	MyParticleSystem();
 	/// @brief Destructor
-	virtual ~MyEntity();
+	virtual ~MyParticleSystem();
 
+	MyEntity* particle;
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
 	/// @return void
 	virtual void update(float deltaTime);
 
-	Point2 puck;
-	void puckpos(Point2);
-
 private:
 	/* add your private declarations */
 };
 
-#endif /* MYENTITY_H */
+#endif /* MYPARTICLESYSTEM_H */

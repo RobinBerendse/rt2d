@@ -31,10 +31,11 @@ public:
 	/// @param deltaTime the elapsed time in seconds
 	/// @return void
 	virtual void update(float deltaTime);
+	bool spawnpoint;
 
 private:
+	void puckspawner();
 	/// @brief the rotating square in the middle of the screen
-	MyEntity* myentity;
 	MyPuck* mypuck;
 	MyEntity* myEnemy;
 	MySquare* mysquare;

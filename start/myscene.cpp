@@ -15,24 +15,19 @@ MyScene::MyScene() : Scene()
 	myplayer->position = Point2(SWIDTH / 2, SHEIGHT / 2);
 	this->addChild(myplayer);
 
-	myentity = new MyEntity();
-	myentity->position = Point2(SWIDTH/2, SHEIGHT/2);
-	this->addChild(myentity);
-
-
-	mypuck = new MyPuck();
-	mypuck->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+	mypuck = new MyPuck(3);
 	this->addChild(mypuck);
 
 	myEnemy = new MyEntity();
 	myEnemy->position = Point2(100, SHEIGHT / 2);
 	this->addChild(myEnemy);
 
-
 	mysquare = new MySquare();
 	mysquare->position = Point2(SWIDTH / 2, SHEIGHT / 2);
 	mysquare->scale = Point2(10.8, 6);
 	this->addChild(mysquare);
+
+	puckspawner();
 }
 
 
@@ -40,17 +35,18 @@ MyScene::~MyScene()
 {
 	// deconstruct and delete the Tree
 	this->removeChild(mypuck);
-	this->removeChild(myentity);
 
-	// delete myentity from the heap (there was a 'new' in the constructor)
+	// delete from the heap (there was a 'new' in the constructor)
 	delete mypuck;
-	delete myentity;
 }
 
 void MyScene::update(float deltaTime)
 {
 	if (math->Distance(myplayer->position, mypuck->position) < 63) {
-		mypuck->Collision(true);
+		mypuck->Collision(myplayer->position);
+	}
+	if (math->Distance(myEnemy->position, mypuck->position) < 63) {
+		mypuck->Collision(myEnemy->position);
 	}
 	
 	//Make point2 from mouse pos
@@ -59,13 +55,7 @@ void MyScene::update(float deltaTime)
 	Point2 mouse = Point2(mousex, mousey);
 
 	myplayer->mousepos(mouse);
-	mypuck->playerpos(myplayer->position);
-
-
-	myEnemy->position.y = mypuck->position.y;
-	//std::cout << Distance(mouse, mypuck->position) << std::endl;
-	//std::cout << Angle(mouse, mypuck->position) << std::endl;
-	//velocity = RotateRadians(mypuck->position, Angle(mouse, mypuck->position));
+	myEnemy->puckpos(mypuck->position);
 	
 	// ###############################################################
 	// Escape key stops the Scene
@@ -81,5 +71,29 @@ void MyScene::update(float deltaTime)
 		RGBAColor color = myplayer->sprite()->color;
 		myplayer->sprite()->color = Color::rotate(color, 0.01f);
 		t.start();
+	}
+
+	//GOALS
+	if (mypuck->position.x > SWIDTH - 45) {
+		int height = SHEIGHT / 2;
+		if (mypuck->position.y > height - 80) {
+			if (mypuck->position.y < height + 80) {
+				//std::cout << mypuck->position << "\n";
+				delete mypuck;
+				mypuck = new MyPuck(3);
+				this->addChild(mypuck);
+				puckspawner();
+			}
+		}
+	}
+}
+
+void MyScene::puckspawner() {
+	spawnpoint = !spawnpoint;
+	if (spawnpoint) {
+		mypuck->position = Point2(800, 150);
+	}
+	else {
+		mypuck->position = Point2(800, 550);
 	}
 }

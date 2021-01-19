@@ -22,7 +22,12 @@ MyPlayer::~MyPlayer()
 
 void MyPlayer::update(float deltaTime)
 {
-	this->position = mouse;
+	if (mouse.x > 650) {
+		this->position.x = mouse.x;
+	}
+	this->position.y = mouse.y;
+
+	
 }
 void MyPlayer::mousepos(Point2 x) {
 	mouse = x;

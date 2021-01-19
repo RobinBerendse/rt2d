@@ -14,6 +14,12 @@ void MyMath::update(float deltaTime)
 {
 	
 }
+int MyMath::Limit(int speed, int limit) {
+	if (speed > limit) {
+		speed = limit;
+	}
+	return speed;
+}
 Point2 MyMath::Subtract(Point2 P1, Point2 P2) {
 	return Point2 (P1.x - P2.x, P1.y - P2.y);
 }
