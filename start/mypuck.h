@@ -4,7 +4,6 @@
 #include <rt2d/entity.h>
 #include "mymath.h"
 
-/// @brief The MyEntity class is the Entity implementation.
 class MyPuck : public Entity
 {
 public:

@@ -2,6 +2,8 @@
 
 MyPuck::MyPuck(int x) : Entity()
 {
+	math = new MyMath;
+
 	speed = x;
 	this->addSprite("assets/circle.tga");
 	this->sprite()->color = RED;
@@ -9,17 +11,16 @@ MyPuck::MyPuck(int x) : Entity()
 
 MyPuck::~MyPuck()
 {
-
+	delete math;
 }
 
 void MyPuck::update(float deltaTime)
 {
 	this->position += Direction * speed * deltaTime;
-
 	// ###############################################################
 	// Hit detection rand
 	// ###############################################################
-	int value = 35;
+	int value = 43;
 	if (this->position.x < value) {
 		Direction.x = -Direction.x;
 		this->position.x = value;
@@ -41,5 +42,5 @@ void MyPuck::Collision(Point2 object) {
 	Point2 Difference = math->Subtract(this->position, object);
 	Direction = math->Normalize(Difference);
 	speed += 1;
-	speed = math->Limit(speed, 15);
+	speed = math->Limit(speed, 25);
 }

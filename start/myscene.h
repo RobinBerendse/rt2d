@@ -1,21 +1,15 @@
-/**
- * Copyright 2015 Your Name <you@yourhost.com>
- *
- * @file myscene.h
- *
- * @brief description of MyScene behavior.
- */
-
 #ifndef MYSCENE_H
 #define MYSCENE_H
 
 #include <rt2d/scene.h>
+#include <rt2d/text.h>
 
-#include "myentity.h"
+#include "myenemy.h"
 #include "mypuck.h"
-#include "mysquare.h"
+#include "mymap.h"
 #include "myplayer.h"
 #include "mymath.h"
+#include "myparticle.h"
 
 
 /// @brief The MyScene class is the Scene implementation.
@@ -34,15 +28,24 @@ public:
 	bool spawnpoint;
 
 private:
-	void puckspawner();
-	/// @brief the rotating square in the middle of the screen
+	void MyScene::puckspawner();
+	void MyScene::updateScore();
+	void MyScene::spawnParticles(Point2);
+	void MyScene::resetgame();
+	void MyScene::goal();
+	void MyScene::RemoveParticles();
+
+	std::vector<MyParticle*> particleArray;
 	MyPuck* mypuck;
-	MyEntity* myEnemy;
-	MySquare* mysquare;
+	MyEnemy* myEnemy;
+	MyMap* mymap;
 	MyPlayer* myplayer;
 	MyMath* math;
-	/// @brief a Timer to rotate the color every n seconds
+	MyParticle* myparticle;
+
 	Timer t;
+
+	std::vector<Text*> text;
 };
 
-#endif /* SCENE00_H */
+#endif /* MYSCENE_H */

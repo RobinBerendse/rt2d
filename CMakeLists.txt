@@ -154,20 +154,20 @@ file(
 IF(MAKE_START)
 	add_executable(start
 		start/main.cpp
-		start/myentity.cpp
-		start/myentity.h
+		start/myenemy.cpp
+		start/myenemy.h
 		start/myscene.cpp
 		start/myscene.h
 		start/mypuck.cpp
 		start/mypuck.h
-		start/mysquare.cpp
-		start/mysquare.h
+		start/mymap.cpp
+		start/mymap.h
 		start/myplayer.cpp
 		start/myplayer.h
 		start/mymath.cpp
 		start/mymath.h
-		start/myparticlesystem.cpp
-		start/myparticlesystem.h
+		start/myparticle.cpp
+		start/myparticle.h
 	)
 	target_link_libraries(start
 		${ALL_GRAPHICS_LIBS}
